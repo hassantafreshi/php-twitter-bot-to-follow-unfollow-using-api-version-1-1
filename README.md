@@ -1,11 +1,12 @@
 # Fallow / UnFallow Twitter function
 With this project you can Unfollow users who did not follow you and follow who are following you :)
+This project used in this Twitter account : https://twitter.com/avadFa
 
 How use
 =======
 * Just download project and change Tokens to your Twitter Token in check.php file.
-* call check.php file with corn job
-* done ;)
+* Call check.php file with corn job
+* Done ;)
 
 
 
