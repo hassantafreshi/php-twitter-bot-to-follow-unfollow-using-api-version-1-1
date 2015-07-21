@@ -85,7 +85,6 @@ $amFollowing = in_array( $heFollows, $full_friends );
 
 echo "$heFollows: ".( $amFollowing ? 'OK' : '!!!' )."<br/>";
  $index++;
- $check=false;
  if( !$amFollowing )
     {
 
