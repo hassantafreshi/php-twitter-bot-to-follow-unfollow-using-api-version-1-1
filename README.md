@@ -9,6 +9,11 @@ How use
 * Done ;)
 
 
+New attribute 
+==========
+* add neverUnfollow list . with this list you can insert id of a twitter account and follow them and be sure that  never remove from your following account .
+
+
 
 More:
 ======
