@@ -3,6 +3,7 @@
  require_once 'twitteroauth.php';
  
  // If you don't want unfollow body , insert twitter id to below list
+ //http://tweeterid.com/ with this site you can get id of a twitter account.
  $neverUnfollow[0]=20369053;
  //$neverUnfollow[1]=2577005263;
  //extra .... $neverUnfollow[n]
