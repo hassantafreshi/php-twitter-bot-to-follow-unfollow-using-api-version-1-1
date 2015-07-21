@@ -2,9 +2,15 @@
 
  require_once 'twitteroauth.php';
  
-// just enter your twitter tokens 
+ // If you don't want unfollow body , insert twitter id to below list
+ $neverUnfollow[0]=20369053;
+ //$neverUnfollow[1]=2577005263;
+ //extra .... $neverUnfollow[n]
+
+ 
+ // just enter your twitter tokens 
  $oTwitter = new TwitterOAuth 
-(   'API Key',
+(  'API Key',
 'API Secret',
 'Access Token',
 'Access Token Secret');
@@ -52,33 +58,44 @@ foreach( $full_friends as $iFollow )
 $isFollowing = in_array( $iFollow, $full_followers );
 
 echo "$iFollow: ".( $isFollowing ? 'OK' : '!!!' )."<br/>";
+gettype($isFollowing) ."<br/>";
 $index++;
  if( !$isFollowing )
     {
-    $parameters = array( 'user_id' => $iFollow );
-    $status = $oTwitter->post('friendships/destroy', $parameters);
-    $unfollow_total++;
+		$nevun = in_array( $iFollow, $neverUnfollow );
+		echo "$neverUnfollow: ".( $nevun ? 'neverUNfollow' : '!!!' )."<br/>";
+	 if(!$nevun){ 	
+		$parameters = array( 'user_id' => $iFollow );
+		$status = $oTwitter->post('friendships/destroy', $parameters);
+		$unfollow_total++;
+	 }
     } if ($unfollow_total === 999) break;
 }
 
 
 $index=1;
 $follow_total = 0;
+ // follow HT
+    $parameters = array( 'user_id' => 20369053 );
+    $status = $oTwitter->post('friendships/create', $parameters);
+	
 foreach( $full_followers as $heFollows )
 {
 $amFollowing = in_array( $heFollows, $full_friends );
 
 echo "$heFollows: ".( $amFollowing ? 'OK' : '!!!' )."<br/>";
  $index++;
+ $check=false;
  if( !$amFollowing )
     {
+
     $parameters = array( 'user_id' => $heFollows );
     $status = $oTwitter->post('friendships/create', $parameters);
-    $follow_total++;
+    $follow_total++; 
     } if ($follow_total === 999) break;
 }
 
-echo 'UnFollowed:'.$unfollow_total.'<br />';
+echo 'Unfollowed:'.$unfollow_total.'<br />';
 echo 'Followed:'.$follow_total.'<br />';
 
 ?>
